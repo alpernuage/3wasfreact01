@@ -81,12 +81,64 @@ db.restaurants.find(
 
 db.restaurants.find(
     { "grades.grade": "A", "grades.score": { $gte: 10, $not: { $lt: 10 } } },
-    { _id: 0, name: 1 }).sort(
+    { name:1, _id:0, "grades.grade" : 1, "grades.score" : 1}).sort(
     { name: -1 }
 )
+
+
+let elemMatch =  {
+    "grade" : "A",
+    "score" : { $gte: 10, $not: { $lt: 10 } }
+};
+
+db.restaurants.find({
+    "grades" : {
+        $elemMatch : elemMatch
+    }
+}, {"name":1, _id:0, "grades.grade" : 1, "grades.score" : 1}).sort({
+    "name" : 1
+})
+
+db.restaurants.find({
+    "grades" : {
+        $eq : elem
+    }
+}, {"name":1, _id:0, "grades.grade" : 1, "grades.score" : 1}).sort({
+    "name" : 1
+})
+
 
 // 3. Différents quartiers de NY
 db.restaurants.distinct("borough")
 
 // 4. Trouvez tous les types de restaurants dans le quartiers du Bronx. 
 db.restaurants.distinct("cuisine", {"borough" : "Bronx"})
+
+// 5. Sélectionnez les restaurants dont le grade est A ou B dans le Bronx.
+db.restaurants.find({
+    $and : [
+        {
+            $or : [ { "grades.grade" : "A" }, { "grades.grade" : "B" } ]
+        },
+        {
+            "borough" : "Bronx"
+        }
+    ]
+    },
+    { "_id" : 0, "name" : 1} 
+)
+
+// 6. Même question mais, on aimerait que les restaurants qui on eu à la dernière inspection un A ou B. 
+
+db.restaurants.find({
+    $and : [
+        {
+            $or : [ { "grades.0.grade" : "A" }, { "grades.0.grade" : "B" } ]
+        },
+        {
+            "borough" : "Bronx"
+        }
+    ]
+    },
+    { "_id" : 0, "name" : 1,  "gardes.grade" : 1 } 
+)
