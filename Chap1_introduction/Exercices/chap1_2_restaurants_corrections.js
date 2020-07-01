@@ -142,3 +142,23 @@ db.restaurants.find({
     },
     { "_id" : 0, "name" : 1,  "gardes.grade" : 1 } 
 )
+
+
+// 7. 
+
+/*
+    name : /^A/
+    name : /bonjour/i
+*/
+
+db.restaurants.find({
+    "name" : /coffee/i
+}, { "_id" : 0, "name" : 1, "borough" : 1} )
+
+
+db.restaurants.find({
+    $and : [
+        {  "name" : /coffee/i },
+        {  "borough" : "Bronx" }
+    ]
+}, { "_id" : 0, "name" : 1, "borough" : 1} )
