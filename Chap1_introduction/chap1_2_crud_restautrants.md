@@ -303,7 +303,13 @@ $not
 
 // existe
 $exists
-"notes" : {"$exists" : 1}
+"notes" : {"$exists" : true}
+
+// tous les documents qui possède(nt) la propriété level
+db.inventory.find( { level : { $exists: true } } )
+
+// tous les documents qui ne possède(nt) pas la propriété level
+db.inventory.find( { level : { $exists: false } } )
 
 // test sur la taille d'une liste
 $size
