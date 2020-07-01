@@ -175,7 +175,7 @@ db.restaurants.find( { cuisine: "Delicatessen" } )
 Plus généralement la structure de la méthode find ressemble à :
 
 ```js
-db.collection.findOne(query, restriction)
+db.collection.findOne(restriction, projection)
 ```
 
 Par exemple on sélectionne les restaurants qui font de la cuisine Delicatessen en affichant que les champs : cuisine et address :
@@ -189,7 +189,7 @@ db.restaurants.find({ cuisine: "Delicatessen" }, {_id : 0, cuisine : 1, address 
 Vous pouvez également utiliser les query operators comme dans l'exemple suivant, ici on cherche à sélectionner les types de cuisines Delicatessen ou American dans la collection restaurants
 
 ```js
-db.restaurants.find( { cuisine: { $in [ "Delicatessen", "American" ] } } )
+db.restaurants.find( { cuisine: { $in : [ "Delicatessen", "American" ] } } )
 
 ```
 
