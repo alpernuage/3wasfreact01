@@ -335,14 +335,14 @@ $regex
 
 ```
 
-- 1. Combien y a t il de restaurants qui font de la cuisine italienne et qui ont eu un score de 10 ou moins ?
+- 1. Combien y a t il de restaurants qui font de la cuisine italienne et qui ont eu un score de 10 au moins ?
 Affichez également le nom, les scores et les coordonnées GPS de ces restaurants. Ordonnez les résultats
 par ordre décroissant sur les noms des restaurants.
 
 Remarque pour la dernière partie de la question utilisez la méthode sort :
 
 ```js
-db.collection.findOne(query, restriction).sort({ key : 1 })
+db.collection.findOne(query, restriction).sort({ key : 1 }) // 1 pour ordre croissant et -1 pour décroissant
 ```
 
 - 2. Quels sont les restaurants qui ont un grade A avec un score supérieur ou égal à 20 ? Affichez uniquement les noms et ordonnez les par ordre décroissant. Affichez le nombre de résultat. 
