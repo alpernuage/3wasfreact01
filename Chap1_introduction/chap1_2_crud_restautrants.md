@@ -175,7 +175,7 @@ db.restaurants.find( { cuisine: "Delicatessen" } )
 Plus généralement la structure de la méthode find ressemble à :
 
 ```js
-db.collection.findOne(query, restriction)
+db.collection.findOne(restriction, projection)
 ```
 
 Par exemple on sélectionne les restaurants qui font de la cuisine Delicatessen en affichant que les champs : cuisine et address :
