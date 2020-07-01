@@ -189,7 +189,7 @@ db.restaurants.find({ cuisine: "Delicatessen" }, {_id : 0, cuisine : 1, address 
 Vous pouvez également utiliser les query operators comme dans l'exemple suivant, ici on cherche à sélectionner les types de cuisines Delicatessen ou American dans la collection restaurants
 
 ```js
-db.restaurants.find( { cuisine: { $in [ "Delicatessen", "American" ] } } )
+db.restaurants.find( { cuisine: { $in : [ "Delicatessen", "American" ] } } )
 
 ```
 
